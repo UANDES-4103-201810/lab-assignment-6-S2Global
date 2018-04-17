@@ -4,14 +4,13 @@ class RegistrationsController < ApplicationController
 	end
 
 	def create
-	    #complete this method
 			@user = User.create(registration_params)
 
 			if @user.valid?
-        flash[:notice] = "Created the user"
+        flash[:notice] = "New user created."
 				redirect_to root_path
       else
-        flash[:notice] = "We were unable to create the user"
+        flash[:notice] = "Unable to create the user."
         redirect_to sign_in_path
 			end
   end

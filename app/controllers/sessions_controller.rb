@@ -3,10 +3,29 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		#complete this method
+    user = User.find_by(email: sessions_params[:email])
+		if(user!=nil)
+		  if(user.password == sessions_params[:password])
+			  redirect_to action: "show", controller: 'users', id: user.id
+			  flash[:notice] = "Logged In."
+
+      end
+    end
+    if(user==nil)
+      flash[:notice] = "Unable to create the user."
+      redirect_to log_in_path
+    end
 	end
 
 	def destroy
 		#complete this method
 	end
+
+	def sessions_params
+		params.require(:session).permit(:email, :password)
+  end
+
+  def is_logged
+    true
+  end
 end
