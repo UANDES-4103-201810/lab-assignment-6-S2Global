@@ -8,10 +8,10 @@ class RegistrationsController < ApplicationController
 			@user = User.create(registration_params)
 
 			if @user.valid?
-        flash[:error] = "Created the user"
+        flash[:notice] = "Created the user"
 				redirect_to root_path
       else
-        flash[:error] = "We were unable to create the user"
+        flash[:notice] = "We were unable to create the user"
         redirect_to sign_in_path
 			end
   end
