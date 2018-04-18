@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
     user = User.find_by(email: sessions_params[:email])
 		if(user!=nil)
 		  if(user.password == sessions_params[:password])
-			  redirect_to action: "show", controller: 'users', id: user.id
 			  flash[:notice] = "Logged In."
+				redirect_to action: "show", controller: 'users', id: user.id
 
       end
     end

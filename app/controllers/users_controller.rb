@@ -25,7 +25,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.create
+    @user = User.create(user_params)
+    redirect_to action: "show", controller: 'users', id: user.id
   end
 
   # PATCH/PUT /users/1

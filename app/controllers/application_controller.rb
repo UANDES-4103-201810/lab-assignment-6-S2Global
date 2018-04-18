@@ -6,15 +6,17 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return :user
+    @_current_user ||= session[:current_user] && User.find_by(id: session[:current_user])
   end
 
   def is_user_logged_in?
   	logged_in = false
-    if logged_in then true
+    if session[:logged_in]
+      logged_in = true
+    end
+    if logged_in then true end
     else
       redirect_to root_path
-    end
   end
 
 end
